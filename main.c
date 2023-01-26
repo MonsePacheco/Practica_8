@@ -1,9 +1,16 @@
-#include "TM4C123GH6PM.h"
-#include <stdint.h>
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include "math.h"
+#include "lib/include.h"
+
+// Initialize the I2C3 module of TM4C123GM6PM Microcontroller
+void I2C3_Init ( void )
+// Wait until I2C buffer is not free
+static int I2C_wait_till_done(void)
+// Write single byte to a selected slave address and memory address of slave
+char I2C3_Wr(int slaveAddr, char memAddr, uint8_t data);
+
+// Write Multiple bytes to a selected slave address and memory address of slave
+char I2C3_Write_Multiple(int slave_address, char slave_memory_address, int bytes_count, char* data);
+
+
 const uint8_t OledFont[][8] =
 {
   {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00},
@@ -423,7 +430,7 @@ void OLED_Write_String( char *s )
 void OLED_Write_Integer(uint8_t  i)
 {
      char s[20];
-     sprintf( s, "%d", i );
+     // sprintf( s, "%d", i );
      OLED_Write_String( s );
      OLED_Write_String( "     " );
 }
@@ -441,7 +448,7 @@ void OLED_Write_Float(float f)
 {
     char* buf11;
     int status;
-    sprintf( buf11, "%f", f );
+    // sprintf( buf11, "%f", f );
     OLED_Write_String(buf11);
     OLED_Write_String( "     " );
 }
