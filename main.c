@@ -1,15 +1,10 @@
 #include "lib/include.h"
 
-// Initialize the I2C3 module of TM4C123GM6PM Microcontroller
-void I2C3_Init ( void )
-// Wait until I2C buffer is not free
-static int I2C_wait_till_done(void)
-// Write single byte to a selected slave address and memory address of slave
-char I2C3_Wr(int slaveAddr, char memAddr, uint8_t data);
 
-// Write Multiple bytes to a selected slave address and memory address of slave
-char I2C3_Write_Multiple(int slave_address, char slave_memory_address, int bytes_count, char* data);
-
+#include <stdint.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 const uint8_t OledFont[][8] =
 {
@@ -180,7 +175,7 @@ int main(void)
                              Delay_ms(1000);
 
              OLED_YX(1, 0);
-             OLED_Write_String ("TM4C123");
+             OLED_Write_String ("Micro");
                          Delay_ms(1000);
             
             /////////////////////
@@ -191,11 +186,11 @@ int main(void)
                 OLED_YX(2, 0 );
                 OLED_Write_String( "Count:" );
                 OLED_YX(2, 8);
-                OLED_Write_Integer(count);
+                // OLED_Write_Integer(count);
                 Delay_ms(100);
             }
             
-            OLED_Clear();
+            // OLED_Clear();
             Delay_ms(100);
             
           
@@ -427,13 +422,6 @@ void OLED_Write_String( char *s )
  * 
  ******************************************************************************/
 
-void OLED_Write_Integer(uint8_t  i)
-{
-     char s[20];
-     // sprintf( s, "%d", i );
-     OLED_Write_String( s );
-     OLED_Write_String( "     " );
-}
 
 /*******************************************************************************
  * Function:  void OLED_Write_Float( float f )
@@ -444,14 +432,7 @@ void OLED_Write_Integer(uint8_t  i)
  * 
  ******************************************************************************/
 
-void OLED_Write_Float(float f)
-{
-    char* buf11;
-    int status;
-    // sprintf( buf11, "%f", f );
-    OLED_Write_String(buf11);
-    OLED_Write_String( "     " );
-}
+
 void Delay_ms(int time_ms)
 {
     int i, j;

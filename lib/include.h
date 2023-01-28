@@ -17,7 +17,9 @@
 
 #include "TM4C123GH6PM.h"
 #include "GPIO.h"
-
+#include "PLL.h"
 #include "UART.h"
+#include "ADC.h"
+#include "PWM.h"
 
 #endif /* INCLUDE_H_ */
